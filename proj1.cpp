@@ -2,6 +2,7 @@
 #include<cstdlib>
 #include<fstream>
 #include<stdlib.h>
+#include<ctime>
 #include<math.h>
 
 using namespace std;
@@ -674,8 +675,8 @@ int solve[12][12];
 int main()
 {
 Sudoku ss;
-//ss.ReadIn();
-//ss.Solve();
 ss.GiveQuestion();
+ss.ReadIn();
+ss.Solve();
 return 0;
 }
