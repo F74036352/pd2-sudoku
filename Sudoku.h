@@ -4,6 +4,10 @@
 #include<ctime>
 #include<stdlib.h>
 #include<math.h>
+
+
+
+
 using namespace std;
 class Sudoku
 {
