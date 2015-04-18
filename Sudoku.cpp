@@ -343,39 +343,51 @@ for(k=0;k<12;k++)
 {
 	for(l=0;l<12;l++)
 	{
-		ppp=1;
+		
 		if(a2D[k][l][0]!=0 && a2D[k][l][0]!=(-1))
 		{
-		a1Dr[a2D[k][l][0]-1]=ppp;
+		a1Dr[a2D[k][l][0]-1]++;
 		}
 	}
 
-
+	pp=0;
 	for(m=0;m<9;m++)
 	{
 		if(a1Dr[m]==0 || a1Dr[m]==1)
 		{pp++;}
 	}
+        for(m=0;m<9;m++)
+        {
+        a1Dr[m]=0;
+        }
+
 	if(pp!=9)
 	{sum=504;sure=1;}
 }
 if(sure!=1)
 {
+	pp=0;
 	for(l=0;l<12;l++)
 	{
         	for(k=0;k<12;k++)
         	{	
-			ppp=1;	
+				
                 	if(a2D[k][l][0]!=0 && a2D[k][l][0]!=(-1))
                 	{
-                	a1Dl[a2D[k][l][0]-1]=ppp;
+                	a1Dl[a2D[k][l][0]-1]++;
                 	}
         	}
+		pp=0;
 		for(m=0;m<9;m++)
         	{
-                if(a1Dr[m]==0 || a1Dr[m]==1)
+                if(a1Dl[m]==0 || a1Dl[m]==1)
                 {pp++;}
         	}
+      		for(m=0;m<9;m++)
+        	{
+        	a1Dl[m]=0;
+        	}
+
         	if(pp!=9)
         	{sum=504;sure=1;}
 	}
