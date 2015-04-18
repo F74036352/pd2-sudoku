@@ -223,6 +223,8 @@ int Sudoku::Solve()
 /*已知答案*/
 	int     a2D[12][12][1];
         int     a3D[12][12][10]={0};/*可能答案*/
+	int     a1Dr[9]={0};
+	int	a1Dl[9]={0};
         int i,j  ,k,l,m  ,n,p,q  ,known,times,sum=0,negative=0,noanswer=0,sure=0,many=0,judge=0,zero=0;
         /*把1到9的數字填滿於可能的答案中 之後再把不可能的一一刪去(填0)*/
 for(i=0;i<12;i++)
@@ -332,7 +334,61 @@ else if(negative==36)
 	sum=504;
 	judge=2;
 	}
-}       /*當9*9宮格中的數加起來不等於504 即表示有空格為0 繼續跑下一輪*/
+}
+int pp=0;
+int ppp=0;
+if(sure!=1)
+{
+for(k=0;k<12;k++)
+{
+	for(l=0;l<12;l++)
+	{
+		ppp=1;
+		if(a2D[k][l][0]!=0 && a2D[k][l][0]!=(-1))
+		{
+		a1Dr[a2D[k][l][0]-1]=ppp;
+		}
+	}
+
+
+	for(m=0;m<9;m++)
+	{
+		if(a1Dr[m]==0 || a1Dr[m]==1)
+		{pp++;}
+	}
+	if(pp!=9)
+	{sum=504;sure=1;}
+}
+if(sure!=1)
+{
+	for(l=0;l<12;l++)
+	{
+        	for(k=0;k<12;k++)
+        	{	
+			ppp=1;	
+                	if(a2D[k][l][0]!=0 && a2D[k][l][0]!=(-1))
+                	{
+                	a1Dl[a2D[k][l][0]-1]=ppp;
+                	}
+        	}
+		for(m=0;m<9;m++)
+        	{
+                if(a1Dr[m]==0 || a1Dr[m]==1)
+                {pp++;}
+        	}
+        	if(pp!=9)
+        	{sum=504;sure=1;}
+	}
+
+}
+	if(sure==1)
+	{
+	cout<<"0"<<endl;
+	sum=504;
+	judge=2;
+	}
+}      
+ /*當9*9宮格中的數加起來不等於504 即表示有空格為0 繼續跑下一輪*/
 int ro=0,cl=0;
         while(sum!=504)
         {
