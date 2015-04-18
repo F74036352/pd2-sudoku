@@ -237,6 +237,7 @@ else if(negative==36)
 	judge=2;
 	}
 }       /*當9*9宮格中的數加起來不等於504 即表示有空格為0 繼續跑下一輪*/
+int ro=0,cl=0;
         while(sum!=504)
         {
 //cout<<"aaa"<<endl;
@@ -245,7 +246,7 @@ else if(negative==36)
                 for(l=0;l<=11;l++)
                 {
 
-                   if(a2D[k][l][0]!=0 && a2D[k][l][0]!=(-1))
+                  if(a2D[k][l][0]!=0 && a2D[k][l][0]!=(-1))
 
                    {
                         known=a2D[k][l][0];
@@ -258,7 +259,7 @@ else if(negative==36)
                          a3D[q][l][known-1]=0;
                         }//2
 
-                        if(k>=0 && k<=2 && l>=0 &&l<=2)
+             /*           if(k>=0 && k<=2 && l>=0 &&l<=2)
                         {//2 if判斷是否屬於第1九宮格
                                 for(p=0;p<=2;p++)
                                 {//4for
@@ -424,11 +425,24 @@ else if(negative==36)
                                                         a3D[p][q][known-1]=0;
                                                 }//5for
                                         }//4for
-                                }//2 if判斷是否屬於第16九宮格
+                                }//2 if判斷是否屬於第16九宮格 
+*/
+			ro=(k/3);
+			cl=(l/3);
+			int xx=0,yy=0,zz=0,ww=0;
+			xx=ro*3;yy=cl*3;zz=ro*3+3;ww=cl*3+3;
+			for(xx=ro*3;xx<zz;xx++)
+                                        {//4for
+                                                for(yy=cl*3;yy<ww;yy++)
+                                                {//5for
+                                                        a3D[xx][yy][known-1]=0;
+                                                }//5for
+                                        }//4for
 
                         a3D[k][l][known-1]=known;
 
-                        }//1 if 有非0答案
+                        }//1 if 有非0答案 
+
                 }
         }
 	for(k=0;k<=11;k++)
@@ -444,6 +458,7 @@ else if(negative==36)
                       }
                 }
         }
+/*
 int f,h;
 for(k=0;k<12;k++)
 {
@@ -483,7 +498,7 @@ for(k=0;k<12;k++)
 		
 	}
 }	
-
+*/
 many=0;
         /*判斷是否有唯一解*/
         for(k=0;k<=11;k++)
