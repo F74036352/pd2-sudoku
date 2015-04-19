@@ -2,18 +2,23 @@
 
 助教您好:
 在我所上傳的檔案中，
-有一個proj1.cpp，
-是我在pietty上寫在一起的完整程式碼(尚未分檔)，
-這個檔案可以忽略
-而其他的是照投影片要求後分檔的檔案。
+有兩個main檔，分別是give_question.cpp和solve.cpp
+以及一個makefile，
+Sudoku.cpp和Sudoku.h包含著class。
 
-compile:make
-run:./give_question
-      or  ./solve  
+compile:
+make
+
+run:
+./give_question 產生數獨的題目
+or  
+./solve  使用者在螢幕上輸入題目，輸入完按下Enter後，自動產生答案，
+若有解，則輸出1，並接著顯示完整答案，若無解，則輸出0，多組解，則輸出2。
 
 另外，在輸入題目給程式解的時候，最後一個數字後絕對不能有空白，
 須直接按下Enter
-ex:
+
+輸入題目格式ex:
 4 2 6 8 7 3 9 5 1 -1 -1 -1
 0 0 3 9 5 0 6 0 4 -1 -1 -1
 9 0 1 6 2 4 8 0 0 -1 -1 -1
