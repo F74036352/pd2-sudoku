@@ -14,8 +14,13 @@ class Sudoku
 public:
 int GiveQuestion();
 int ReadIn();
+int compare(int,int,int);
+void Solverec();
 int Solve();
 private:
+int ans;
 int array[12][12];
 int solve[12][12];
+int map[12][12];
+int mapans[12][12];
 };

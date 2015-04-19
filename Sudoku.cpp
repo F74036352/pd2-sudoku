@@ -210,16 +210,92 @@ for(i=0;i<12;i++)
 for(j=0;j<12;j++)
 {
 //cout<<array[i][j]<<" ";
-solve[i][j]=array[i][j];
+solve[i][j]=array[i][j];//存到暴力解的數獨
+map[i][j]=array[i][j];//存到回朔法的數獨
 }
 
 cout<<endl;
 }
 }
+int Sudoku::compare(int a,int b,int c)//比較0的位置所填的數不重複，比較直行橫列及九宮格
+        {
+        int l,m,n=(a/3)*3+3,o=(b/3)*3+3;
+        for(l=0;l<12;l++)//直行及橫列
+                {
+                if(map[l][b]==c)
+                        return 0;
+                if(map[a][l]==c)
+                        return 0;
+                }
 
+        for(l=(a/3)*3;l<n;l++)//九宮格
+                {
+                for(m=(b/3)*3;m<o;m++)
+                        {
+                        if(map[l][m]==c)
+                                return 0;
+                        }
+                }
+        return 1;//1表示沒重複
+        }
+void Sudoku::Solverec()//暴力解有些題目無法解出，須用到回朔法
+        {
+        int a,b,c,t=0;
+        for(a=0;a<12;a++)
+                {
+                for(b=0;b<12;b++)
+                        {
+                        if(map[a][b]!=0)
+                                t++;//已知道的答案格數
+                        }
+                }
+        if(t==144)
+                {
+                ans++;//解的個數
+                for(a=0;a<12;a++)
+                        {
+                        for(b=0;b<12;b++)
+                                mapans[a][b]=map[a][b];
+                        }
+                if(ans>=2)//多解
+                        return;
+                }
+        for(a=0;a<12;a++)
+                {
+                for(b=0;b<12;b++)
+                        {
+                        if(map[a][b]==0)
+                                {
+                                for(c=1;c<10;c++)
+                                        {
+                                        if(compare(a,b,c)==1)//檢查
+                                                {
+                                                map[a][b]=c;//開始填答案
+                                                Solverec();//呼叫自己
+                                                map[a][b]=0;
+                                                 if(ans>=2)
+                                                 {return;}
+                                                }
+                                        }
+                                return;
+                                }
+                        }
+                }
+        }
 
 int Sudoku::Solve()
 {
+int a=0,b=0,ii=0;
+for(a=0;a<12;a++)
+{
+	for(b=0;b<12;b++)
+	{
+		if(solve[a][b]==0)
+		{ii++;}
+	}
+}
+if(ii<20)
+{//if
 /*已知答案*/
 	int     a2D[12][12][1];
         int     a3D[12][12][10]={0};/*可能答案*/
@@ -264,7 +340,7 @@ for(i=0;i<12;i++)
 //找出所有的-1
 
 
- for(i=0;i<12;i++)
+ for(i=0;i<12;i++)//計算-1的個數
 {
 	for(j=0;j<12;j++)
 	{
@@ -274,7 +350,7 @@ for(i=0;i<12;i++)
 		}	
 	}
 }
-if(negative!=36)
+if(negative!=36)//-1的個數要36個
 {
 	printf("0\n");
 	sum=504;
@@ -658,5 +734,26 @@ else if(judge==0)
 	printf("\n");
 	}
 }
+}//if
+if(ii>20 || ii==20) 
+{
+ans=0;
+        Solverec();
+        if(ans==0)
+                cout<<"0"<<endl;
+        if(ans==1)
+                {
+                cout<<"1"<<endl;
+                for(a=0;a<12;a++)
+                        {
+                                for(b=0;b<12;b++)
+                                        printf("%-2d ",mapans[a][b]);
+                                cout<<'\n';
+                        }
+                }
+        if(ans==2)
+                cout<<"2"<<endl;
 
+
+}
 }
