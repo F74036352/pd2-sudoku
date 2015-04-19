@@ -217,22 +217,22 @@ map[i][j]=array[i][j];//存到回朔法的數獨
 cout<<endl;
 }
 }
-int Sudoku::compare(int a,int b,int c)//比較0的位置所填的數不重複，比較直行橫列及九宮格
+int Sudoku::compare(int i,int j,int k)//比較0的位置所填的數不重複，比較直行橫列及九宮格
         {
-        int l,m,n=(a/3)*3+3,o=(b/3)*3+3;
+        int l,m,n=(i/3)*3+3,o=(j/3)*3+3;
         for(l=0;l<12;l++)//直行及橫列
                 {
-                if(map[l][b]==c)
+                if(map[l][j]==k)
                         return 0;
-                if(map[a][l]==c)
+                if(map[i][l]==k)
                         return 0;
                 }
 
-        for(l=(a/3)*3;l<n;l++)//九宮格
+        for(l=(i/3)*3;l<n;l++)//九宮格
                 {
-                for(m=(b/3)*3;m<o;m++)
+                for(m=(j/3)*3;m<o;m++)
                         {
-                        if(map[l][m]==c)
+                        if(map[l][m]==k)
                                 return 0;
                         }
                 }
@@ -240,39 +240,39 @@ int Sudoku::compare(int a,int b,int c)//比較0的位置所填的數不重複，
         }
 void Sudoku::Solverec()//暴力解有些題目無法解出，須用到回朔法
         {
-        int a,b,c,t=0;
-        for(a=0;a<12;a++)
+        int i,j,k,t=0;
+        for(i=0;i<12;i++)
                 {
-                for(b=0;b<12;b++)
+                for(j=0;j<12;j++)
                         {
-                        if(map[a][b]!=0)
+                        if(map[i][j]!=0)
                                 t++;//已知道的答案格數
                         }
                 }
         if(t==144)
                 {
                 ans++;//解的個數
-                for(a=0;a<12;a++)
+                for(i=0;i<12;i++)
                         {
-                        for(b=0;b<12;b++)
-                                mapans[a][b]=map[a][b];
+                        for(j=0;j<12;j++)
+                                mapans[i][j]=map[i][j];
                         }
                 if(ans>=2)//多解
                         return;
                 }
-        for(a=0;a<12;a++)
+        for(i=0;i<12;i++)
                 {
-                for(b=0;b<12;b++)
+                for(j=0;j<12;j++)
                         {
-                        if(map[a][b]==0)
+                        if(map[i][j]==0)
                                 {
-                                for(c=1;c<10;c++)
+                                for(k=1;k<10;k++)
                                         {
-                                        if(compare(a,b,c)==1)//檢查
+                                        if(compare(i,j,k)==1)//檢查
                                                 {
-                                                map[a][b]=c;//開始填答案
+                                                map[i][j]=k;//開始填答案
                                                 Solverec();//呼叫自己
-                                                map[a][b]=0;
+                                                map[i][j]=0;
                                                  if(ans>=2)
                                                  {return;}
                                                 }
