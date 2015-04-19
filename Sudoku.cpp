@@ -912,7 +912,7 @@ else if(judge==0)
 	{
 	 for(j=0;j<12;j++)
 	 {
- 	 printf("%d ",a2D[i][j][0]);
+ 	 printf("%-2d ",a2D[i][j][0]);
  	 }
 	printf("\n");
 	}
