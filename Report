@@ -1,7 +1,6 @@
 # pd2-sudoku
 
-助教您好:
-在我所上傳的檔案中，
+在上傳的檔案中，
 有兩個main檔，分別是give_question.cpp和solve.cpp
 以及一個makefile，
 Sudoku.cpp和Sudoku.h包含著class。
